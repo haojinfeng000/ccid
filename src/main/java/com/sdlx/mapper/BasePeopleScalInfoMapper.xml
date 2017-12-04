@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.BasePeopleScalInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.BasePeopleScalInfo">
+    <id column="PEOPLE_SCALE_ID" jdbcType="INTEGER" property="peopleScaleId" />
+    <result column="PEOPLE_SCALE" jdbcType="VARCHAR" property="peopleScale" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PEOPLE_SCALE_ID, PEOPLE_SCALE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_PEOPLE_SCAL_INFO
+    where PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BASE_PEOPLE_SCAL_INFO
+    where PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.BasePeopleScalInfo">
+    insert into BASE_PEOPLE_SCAL_INFO (PEOPLE_SCALE_ID, PEOPLE_SCALE)
+    values (#{peopleScaleId,jdbcType=INTEGER}, #{peopleScale,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.BasePeopleScalInfo">
+    insert into BASE_PEOPLE_SCAL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="peopleScaleId != null">
+        PEOPLE_SCALE_ID,
+      </if>
+      <if test="peopleScale != null">
+        PEOPLE_SCALE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="peopleScaleId != null">
+        #{peopleScaleId,jdbcType=INTEGER},
+      </if>
+      <if test="peopleScale != null">
+        #{peopleScale,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.BasePeopleScalInfo">
+    update BASE_PEOPLE_SCAL_INFO
+    <set>
+      <if test="peopleScale != null">
+        PEOPLE_SCALE = #{peopleScale,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.BasePeopleScalInfo">
+    update BASE_PEOPLE_SCAL_INFO
+    set PEOPLE_SCALE = #{peopleScale,jdbcType=VARCHAR}
+    where PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER}
+  </update>
+</mapper>

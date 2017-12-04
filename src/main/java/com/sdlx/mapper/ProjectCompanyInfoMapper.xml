@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.ProjectCompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.ProjectCompanyInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PROJECT_ID" jdbcType="INTEGER" property="projectId" />
+    <result column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
+    <result column="PROJECT_MANAGE_ID" jdbcType="INTEGER" property="projectManageId" />
+    <result column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="INVITE_CODE" jdbcType="VARCHAR" property="inviteCode" />
+    <result column="IS_REGIST" jdbcType="INTEGER" property="isRegist" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ISCOMPLATE" jdbcType="INTEGER" property="iscomplate" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="INVALID_DATE" jdbcType="DATE" property="invalidDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROJECT_ID, COMPANY_ID, PROJECT_MANAGE_ID, PAPER_ID, ACCOUNT, INVITE_CODE, IS_REGIST, 
+    STATE, START_TIME, END_TIME, ISCOMPLATE, CREATE_DATE, UPDATE_DATE, INVALID_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PROJECT_COMPANY_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PROJECT_COMPANY_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.ProjectCompanyInfo">
+    insert into PROJECT_COMPANY_INFO (ID, PROJECT_ID, COMPANY_ID, 
+      PROJECT_MANAGE_ID, PAPER_ID, ACCOUNT, 
+      INVITE_CODE, IS_REGIST, STATE, 
+      START_TIME, END_TIME, ISCOMPLATE, 
+      CREATE_DATE, UPDATE_DATE, INVALID_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, 
+      #{projectManageId,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{inviteCode,jdbcType=VARCHAR}, #{isRegist,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{iscomplate,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{invalidDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.ProjectCompanyInfo">
+    insert into PROJECT_COMPANY_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="projectId != null">
+        PROJECT_ID,
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID,
+      </if>
+      <if test="projectManageId != null">
+        PROJECT_MANAGE_ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="inviteCode != null">
+        INVITE_CODE,
+      </if>
+      <if test="isRegist != null">
+        IS_REGIST,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="iscomplate != null">
+        ISCOMPLATE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="invalidDate != null">
+        INVALID_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="projectManageId != null">
+        #{projectManageId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRegist != null">
+        #{isRegist,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscomplate != null">
+        #{iscomplate,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null">
+        #{invalidDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.ProjectCompanyInfo">
+    update PROJECT_COMPANY_INFO
+    <set>
+      <if test="projectId != null">
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="projectManageId != null">
+        PROJECT_MANAGE_ID = #{projectManageId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        PAPER_ID = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        INVITE_CODE = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isRegist != null">
+        IS_REGIST = #{isRegist,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscomplate != null">
+        ISCOMPLATE = #{iscomplate,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidDate != null">
+        INVALID_DATE = #{invalidDate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.ProjectCompanyInfo">
+    update PROJECT_COMPANY_INFO
+    set PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      PROJECT_MANAGE_ID = #{projectManageId,jdbcType=INTEGER},
+      PAPER_ID = #{paperId,jdbcType=INTEGER},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      INVITE_CODE = #{inviteCode,jdbcType=VARCHAR},
+      IS_REGIST = #{isRegist,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=INTEGER},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      ISCOMPLATE = #{iscomplate,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      INVALID_DATE = #{invalidDate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

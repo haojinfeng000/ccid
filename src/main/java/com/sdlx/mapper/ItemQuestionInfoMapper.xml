@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.ItemQuestionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.ItemQuestionInfo">
+    <id column="QUEST_ID" jdbcType="INTEGER" property="questId" />
+    <result column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <result column="QUEST_WEIGHT" jdbcType="INTEGER" property="questWeight" />
+    <result column="QUEST_LEVEL" jdbcType="INTEGER" property="questLevel" />
+    <result column="QUEST_NAME" jdbcType="VARCHAR" property="questName" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ORDER_LIST" jdbcType="INTEGER" property="orderList" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    QUEST_ID, PAPER_ID, TYPE, MODULE_ID, QUEST_WEIGHT, QUEST_LEVEL, QUEST_NAME, STATE, 
+    REMARK, ORDER_LIST, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ITEM_QUESTION_INFO
+    where QUEST_ID = #{questId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ITEM_QUESTION_INFO
+    where QUEST_ID = #{questId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.ItemQuestionInfo">
+    insert into ITEM_QUESTION_INFO (QUEST_ID, PAPER_ID, TYPE, 
+      MODULE_ID, QUEST_WEIGHT, QUEST_LEVEL, 
+      QUEST_NAME, STATE, REMARK, 
+      ORDER_LIST, CREATE_DATE, UPDATE_DATE
+      )
+    values (#{questId,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{moduleId,jdbcType=INTEGER}, #{questWeight,jdbcType=INTEGER}, #{questLevel,jdbcType=INTEGER}, 
+      #{questName,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{orderList,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.ItemQuestionInfo">
+    insert into ITEM_QUESTION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questId != null">
+        QUEST_ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="questWeight != null">
+        QUEST_WEIGHT,
+      </if>
+      <if test="questLevel != null">
+        QUEST_LEVEL,
+      </if>
+      <if test="questName != null">
+        QUEST_NAME,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="orderList != null">
+        ORDER_LIST,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questId != null">
+        #{questId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="questWeight != null">
+        #{questWeight,jdbcType=INTEGER},
+      </if>
+      <if test="questLevel != null">
+        #{questLevel,jdbcType=INTEGER},
+      </if>
+      <if test="questName != null">
+        #{questName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderList != null">
+        #{orderList,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.ItemQuestionInfo">
+    update ITEM_QUESTION_INFO
+    <set>
+      <if test="paperId != null">
+        PAPER_ID = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="questWeight != null">
+        QUEST_WEIGHT = #{questWeight,jdbcType=INTEGER},
+      </if>
+      <if test="questLevel != null">
+        QUEST_LEVEL = #{questLevel,jdbcType=INTEGER},
+      </if>
+      <if test="questName != null">
+        QUEST_NAME = #{questName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderList != null">
+        ORDER_LIST = #{orderList,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where QUEST_ID = #{questId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.ItemQuestionInfo">
+    update ITEM_QUESTION_INFO
+    set PAPER_ID = #{paperId,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=INTEGER},
+      MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      QUEST_WEIGHT = #{questWeight,jdbcType=INTEGER},
+      QUEST_LEVEL = #{questLevel,jdbcType=INTEGER},
+      QUEST_NAME = #{questName,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ORDER_LIST = #{orderList,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where QUEST_ID = #{questId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.PlatUserReportInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.PlatUserReportInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="COMPANY_PROJECT_ID" jdbcType="INTEGER" property="companyProjectId" />
+    <result column="REPORT_SOURCE" jdbcType="VARCHAR" property="reportSource" />
+    <result column="PLAT_USER_ID" jdbcType="INTEGER" property="platUserId" />
+    <result column="REPORT_DATE" jdbcType="TIMESTAMP" property="reportDate" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, COMPANY_PROJECT_ID, REPORT_SOURCE, PLAT_USER_ID, REPORT_DATE, STATE, REMARK, 
+    CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PLAT_USER_REPORT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PLAT_USER_REPORT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.PlatUserReportInfo">
+    insert into PLAT_USER_REPORT_INFO (ID, COMPANY_PROJECT_ID, REPORT_SOURCE, 
+      PLAT_USER_ID, REPORT_DATE, STATE, 
+      REMARK, CREATE_DATE, UPDATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyProjectId,jdbcType=INTEGER}, #{reportSource,jdbcType=VARCHAR}, 
+      #{platUserId,jdbcType=INTEGER}, #{reportDate,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.PlatUserReportInfo">
+    insert into PLAT_USER_REPORT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="companyProjectId != null">
+        COMPANY_PROJECT_ID,
+      </if>
+      <if test="reportSource != null">
+        REPORT_SOURCE,
+      </if>
+      <if test="platUserId != null">
+        PLAT_USER_ID,
+      </if>
+      <if test="reportDate != null">
+        REPORT_DATE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyProjectId != null">
+        #{companyProjectId,jdbcType=INTEGER},
+      </if>
+      <if test="reportSource != null">
+        #{reportSource,jdbcType=VARCHAR},
+      </if>
+      <if test="platUserId != null">
+        #{platUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reportDate != null">
+        #{reportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.PlatUserReportInfo">
+    update PLAT_USER_REPORT_INFO
+    <set>
+      <if test="companyProjectId != null">
+        COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER},
+      </if>
+      <if test="reportSource != null">
+        REPORT_SOURCE = #{reportSource,jdbcType=VARCHAR},
+      </if>
+      <if test="platUserId != null">
+        PLAT_USER_ID = #{platUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reportDate != null">
+        REPORT_DATE = #{reportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.PlatUserReportInfo">
+    update PLAT_USER_REPORT_INFO
+    set COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER},
+      REPORT_SOURCE = #{reportSource,jdbcType=VARCHAR},
+      PLAT_USER_ID = #{platUserId,jdbcType=INTEGER},
+      REPORT_DATE = #{reportDate,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

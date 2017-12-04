@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.PlatModuleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.PlatModuleInfo">
+    <id column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <result column="PARENT_MODULE_ID" jdbcType="INTEGER" property="parentModuleId" />
+    <result column="MODULE_NAME" jdbcType="VARCHAR" property="moduleName" />
+    <result column="MODULE_SOURCE" jdbcType="VARCHAR" property="moduleSource" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MODULE_ID, PARENT_MODULE_ID, MODULE_NAME, MODULE_SOURCE, REMARK, STATE, CREATE_DATE, 
+    UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PLAT_MODULE_INFO
+    where MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PLAT_MODULE_INFO
+    where MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.PlatModuleInfo">
+    insert into PLAT_MODULE_INFO (MODULE_ID, PARENT_MODULE_ID, MODULE_NAME, 
+      MODULE_SOURCE, REMARK, STATE, 
+      CREATE_DATE, UPDATE_DATE)
+    values (#{moduleId,jdbcType=INTEGER}, #{parentModuleId,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR}, 
+      #{moduleSource,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.PlatModuleInfo">
+    insert into PLAT_MODULE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="parentModuleId != null">
+        PARENT_MODULE_ID,
+      </if>
+      <if test="moduleName != null">
+        MODULE_NAME,
+      </if>
+      <if test="moduleSource != null">
+        MODULE_SOURCE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="parentModuleId != null">
+        #{parentModuleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleSource != null">
+        #{moduleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.PlatModuleInfo">
+    update PLAT_MODULE_INFO
+    <set>
+      <if test="parentModuleId != null">
+        PARENT_MODULE_ID = #{parentModuleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        MODULE_NAME = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleSource != null">
+        MODULE_SOURCE = #{moduleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.PlatModuleInfo">
+    update PLAT_MODULE_INFO
+    set PARENT_MODULE_ID = #{parentModuleId,jdbcType=INTEGER},
+      MODULE_NAME = #{moduleName,jdbcType=VARCHAR},
+      MODULE_SOURCE = #{moduleSource,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </update>
+</mapper>

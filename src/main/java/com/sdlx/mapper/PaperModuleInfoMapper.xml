@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.PaperModuleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.PaperModuleInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
+    <result column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <result column="MODULE_WEIGHT" jdbcType="DOUBLE" property="moduleWeight" />
+    <result column="MODULE_FORMULA" jdbcType="VARCHAR" property="moduleFormula" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PAPER_ID, UNIT_ID, MODULE_ID, MODULE_WEIGHT, MODULE_FORMULA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PAPER_MODULE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PAPER_MODULE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.PaperModuleInfo">
+    insert into PAPER_MODULE_INFO (ID, PAPER_ID, UNIT_ID, 
+      MODULE_ID, MODULE_WEIGHT, MODULE_FORMULA
+      )
+    values (#{id,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, 
+      #{moduleId,jdbcType=INTEGER}, #{moduleWeight,jdbcType=DOUBLE}, #{moduleFormula,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.PaperModuleInfo">
+    insert into PAPER_MODULE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="unitId != null">
+        UNIT_ID,
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="moduleWeight != null">
+        MODULE_WEIGHT,
+      </if>
+      <if test="moduleFormula != null">
+        MODULE_FORMULA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleWeight != null">
+        #{moduleWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="moduleFormula != null">
+        #{moduleFormula,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.PaperModuleInfo">
+    update PAPER_MODULE_INFO
+    <set>
+      <if test="paperId != null">
+        PAPER_ID = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        UNIT_ID = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleWeight != null">
+        MODULE_WEIGHT = #{moduleWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="moduleFormula != null">
+        MODULE_FORMULA = #{moduleFormula,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.PaperModuleInfo">
+    update PAPER_MODULE_INFO
+    set PAPER_ID = #{paperId,jdbcType=INTEGER},
+      UNIT_ID = #{unitId,jdbcType=INTEGER},
+      MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      MODULE_WEIGHT = #{moduleWeight,jdbcType=DOUBLE},
+      MODULE_FORMULA = #{moduleFormula,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.PlatRoleModuleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.PlatRoleModuleInfo">
+    <id column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
+    <id column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <result column="ISADD" jdbcType="INTEGER" property="isadd" />
+    <result column="ISUPD" jdbcType="INTEGER" property="isupd" />
+    <result column="ISDEL" jdbcType="INTEGER" property="isdel" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLE_ID, MODULE_ID, ISADD, ISUPD, ISDEL, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sdlx.model.PlatRoleModuleInfoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PLAT_ROLE_MODULE_INFO
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sdlx.model.PlatRoleModuleInfoKey">
+    delete from PLAT_ROLE_MODULE_INFO
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.PlatRoleModuleInfo">
+    insert into PLAT_ROLE_MODULE_INFO (ROLE_ID, MODULE_ID, ISADD, 
+      ISUPD, ISDEL, CREATE_DATE, 
+      UPDATE_DATE)
+    values (#{roleId,jdbcType=INTEGER}, #{moduleId,jdbcType=INTEGER}, #{isadd,jdbcType=INTEGER}, 
+      #{isupd,jdbcType=INTEGER}, #{isdel,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.PlatRoleModuleInfo">
+    insert into PLAT_ROLE_MODULE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="isadd != null">
+        ISADD,
+      </if>
+      <if test="isupd != null">
+        ISUPD,
+      </if>
+      <if test="isdel != null">
+        ISDEL,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="isadd != null">
+        #{isadd,jdbcType=INTEGER},
+      </if>
+      <if test="isupd != null">
+        #{isupd,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.PlatRoleModuleInfo">
+    update PLAT_ROLE_MODULE_INFO
+    <set>
+      <if test="isadd != null">
+        ISADD = #{isadd,jdbcType=INTEGER},
+      </if>
+      <if test="isupd != null">
+        ISUPD = #{isupd,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null">
+        ISDEL = #{isdel,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.PlatRoleModuleInfo">
+    update PLAT_ROLE_MODULE_INFO
+    set ISADD = #{isadd,jdbcType=INTEGER},
+      ISUPD = #{isupd,jdbcType=INTEGER},
+      ISDEL = #{isdel,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,199 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--导入属性配置-->
+   <!-- <properties resource="jdbc.properties"></properties>-->
+
+    <!--指定特定数据库的jdbc驱动jar包的位置-->
+    <classPathEntry location="F:\maven\localWare\mysql\mysql-connector-java\5.1.22\mysql-connector-java-5.1.22.jar"/>
+
+    <context id="default" targetRuntime="MyBatis3">
+
+        <!-- optional，旨在创建class时，对注释进行控制 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--jdbc的数据库连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://47.93.25.124:3306/ccid?allowMultiQueries=true"
+                userId="ccid"
+                password="ccid">
+        </jdbcConnection>
+
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+            targetPackage     指定生成的model生成所在的包名
+            targetProject     指定在该项目下所在的路径
+        -->
+        <javaModelGenerator targetPackage="com.sdlx.model"
+                            targetProject="src/main/java">
+
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="false"/>
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
+        <sqlMapGenerator targetPackage="com.sdlx.mapper"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="mergeable" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator targetPackage="com.sdlx.dao"
+                             targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--
+        从数据库中查询全部表名拼接以下映射关系
+        select '<table tableName="'||tablename||'"'||' domainObjectName="'||REPLACE(initcap(tablename),'_','')||'"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>' from pg_tables where tableowner = 'pms'
+        -->
+        <!--<table tableName="patient_in_hospital_info" domainObjectName="PatientInHospitalInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="patient_pre_info" domainObjectName="PatientPreInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="patient_treatment_info" domainObjectName="PatientTreatmentInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="reply_info" domainObjectName="ReplyInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="reply_pic_info" domainObjectName="ReplyPicInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="treatment_assay_info" domainObjectName="TreatmentAssayInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="account_doc_info" domainObjectName="AccountDocInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="account_ext_info" domainObjectName="AccountExtInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="account_info" domainObjectName="AccountInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="consultaion_pic_info" domainObjectName="ConsultaionPicInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="consultation_info" domainObjectName="ConsultationInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="disease_pre_assay_info" domainObjectName="DiseasePreAssayInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="doctor_patient_info" domainObjectName="DoctorPatientInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="drugs_info" domainObjectName="DrugsInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="knowledge_info" domainObjectName="KnowledgeInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="patient_disease_pre_info" domainObjectName="PatientDiseasePreInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="message_info" domainObjectName="MessageInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="order_info" domainObjectName="OrderInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>-->
+
+       <!-- <table tableName="MEDICAL_ASSAY_INFO" domainObjectName="MedicalAssayInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="MEDICAL_HISTORY_INFO" domainObjectName="MedicalHistoryInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="PATIENT_MEDICAL_HISTORY_INFO" domainObjectName="PatientMedicalHistoryInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>-->
+        <table schema="ccid" tableName="BASE_CITY_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_COMPANY_TYPE"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_DEPT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_INCOME_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_INDUSTRY_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_MODULE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_PEOPLE_SCAL_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_PROVINCE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="BASE_UNIT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="COMPANY_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="COMPANY_PROJECT_PROFESSOR"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="COMPANY_PROJECT_REPORT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="COMPANY_STAFF_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="COMPANY_STAFF_PAPER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="CONPANY_STAFF_MODULE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="ITEM_EXAM_PAPER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="ITEM_QUESTION_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="ITEM_QUESTION_OPTION_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="OBSERVER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PAPER_MODULE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PAPER_UNIT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_DIC_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_MODULE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_ROLE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_ROLE_MODULE_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_USER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PLAT_USER_REPORT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROFESSOR_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROFESSOR_PAPER_DETAIL"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROFESSOR_PAPER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROFESSOR_REPORT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_COMPANY_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_MANAGER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_MANAGER_PROFESSOR"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_MANAGE_PAPER_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="ccid" tableName="PROJECT_MANAGE_REPORT_INFO"  enableCountByExample="false" enableUpdateByExample="false"   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.PaperUnitInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.PaperUnitInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
+    <result column="UNIT_WEIGHT" jdbcType="DOUBLE" property="unitWeight" />
+    <result column="UNIT_FORMULA" jdbcType="VARCHAR" property="unitFormula" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PAPER_ID, UNIT_ID, UNIT_WEIGHT, UNIT_FORMULA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PAPER_UNIT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PAPER_UNIT_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.PaperUnitInfo">
+    insert into PAPER_UNIT_INFO (ID, PAPER_ID, UNIT_ID, 
+      UNIT_WEIGHT, UNIT_FORMULA)
+    values (#{id,jdbcType=INTEGER}, #{paperId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, 
+      #{unitWeight,jdbcType=DOUBLE}, #{unitFormula,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.PaperUnitInfo">
+    insert into PAPER_UNIT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="unitId != null">
+        UNIT_ID,
+      </if>
+      <if test="unitWeight != null">
+        UNIT_WEIGHT,
+      </if>
+      <if test="unitFormula != null">
+        UNIT_FORMULA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="unitWeight != null">
+        #{unitWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="unitFormula != null">
+        #{unitFormula,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.PaperUnitInfo">
+    update PAPER_UNIT_INFO
+    <set>
+      <if test="paperId != null">
+        PAPER_ID = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        UNIT_ID = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="unitWeight != null">
+        UNIT_WEIGHT = #{unitWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="unitFormula != null">
+        UNIT_FORMULA = #{unitFormula,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.PaperUnitInfo">
+    update PAPER_UNIT_INFO
+    set PAPER_ID = #{paperId,jdbcType=INTEGER},
+      UNIT_ID = #{unitId,jdbcType=INTEGER},
+      UNIT_WEIGHT = #{unitWeight,jdbcType=DOUBLE},
+      UNIT_FORMULA = #{unitFormula,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

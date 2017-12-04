@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.ConpanyStaffModuleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.ConpanyStaffModuleInfo">
+    <id column="STAFF_ID" jdbcType="INTEGER" property="staffId" />
+    <id column="COMPANY_PROJECT_ID" jdbcType="INTEGER" property="companyProjectId" />
+    <id column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <id column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="ISSUBMIT" jdbcType="INTEGER" property="issubmit" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="MODULE_SCORE" jdbcType="DOUBLE" property="moduleScore" />
+    <result column="REPORT_SOURCE" jdbcType="VARCHAR" property="reportSource" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    STAFF_ID, COMPANY_PROJECT_ID, MODULE_ID, PAPER_ID, ISSUBMIT, START_TIME, END_TIME, 
+    MODULE_SCORE, REPORT_SOURCE, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.sdlx.model.ConpanyStaffModuleInfoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CONPANY_STAFF_MODULE_INFO
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+      and PAPER_ID = #{paperId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sdlx.model.ConpanyStaffModuleInfoKey">
+    delete from CONPANY_STAFF_MODULE_INFO
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+      and PAPER_ID = #{paperId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.ConpanyStaffModuleInfo">
+    insert into CONPANY_STAFF_MODULE_INFO (STAFF_ID, COMPANY_PROJECT_ID, MODULE_ID, 
+      PAPER_ID, ISSUBMIT, START_TIME, 
+      END_TIME, MODULE_SCORE, REPORT_SOURCE, 
+      CREATE_DATE, UPDATE_DATE)
+    values (#{staffId,jdbcType=INTEGER}, #{companyProjectId,jdbcType=INTEGER}, #{moduleId,jdbcType=INTEGER}, 
+      #{paperId,jdbcType=INTEGER}, #{issubmit,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{moduleScore,jdbcType=DOUBLE}, #{reportSource,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.ConpanyStaffModuleInfo">
+    insert into CONPANY_STAFF_MODULE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        STAFF_ID,
+      </if>
+      <if test="companyProjectId != null">
+        COMPANY_PROJECT_ID,
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="issubmit != null">
+        ISSUBMIT,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="endTime != null">
+        END_TIME,
+      </if>
+      <if test="moduleScore != null">
+        MODULE_SCORE,
+      </if>
+      <if test="reportSource != null">
+        REPORT_SOURCE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="companyProjectId != null">
+        #{companyProjectId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="issubmit != null">
+        #{issubmit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moduleScore != null">
+        #{moduleScore,jdbcType=DOUBLE},
+      </if>
+      <if test="reportSource != null">
+        #{reportSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.ConpanyStaffModuleInfo">
+    update CONPANY_STAFF_MODULE_INFO
+    <set>
+      <if test="issubmit != null">
+        ISSUBMIT = #{issubmit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moduleScore != null">
+        MODULE_SCORE = #{moduleScore,jdbcType=DOUBLE},
+      </if>
+      <if test="reportSource != null">
+        REPORT_SOURCE = #{reportSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+      and PAPER_ID = #{paperId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.ConpanyStaffModuleInfo">
+    update CONPANY_STAFF_MODULE_INFO
+    set ISSUBMIT = #{issubmit,jdbcType=INTEGER},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      MODULE_SCORE = #{moduleScore,jdbcType=DOUBLE},
+      REPORT_SOURCE = #{reportSource,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER}
+      and MODULE_ID = #{moduleId,jdbcType=INTEGER}
+      and PAPER_ID = #{paperId,jdbcType=INTEGER}
+  </update>
+</mapper>

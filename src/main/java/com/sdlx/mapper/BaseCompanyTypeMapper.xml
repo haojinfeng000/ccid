@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.BaseCompanyTypeMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.BaseCompanyType">
+    <id column="COMPANY_TYPE_ID" jdbcType="INTEGER" property="companyTypeId" />
+    <result column="COMPANY_TYPE_NAME" jdbcType="VARCHAR" property="companyTypeName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COMPANY_TYPE_ID, COMPANY_TYPE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_COMPANY_TYPE
+    where COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BASE_COMPANY_TYPE
+    where COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.BaseCompanyType">
+    insert into BASE_COMPANY_TYPE (COMPANY_TYPE_ID, COMPANY_TYPE_NAME)
+    values (#{companyTypeId,jdbcType=INTEGER}, #{companyTypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.BaseCompanyType">
+    insert into BASE_COMPANY_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyTypeId != null">
+        COMPANY_TYPE_ID,
+      </if>
+      <if test="companyTypeName != null">
+        COMPANY_TYPE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyTypeId != null">
+        #{companyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="companyTypeName != null">
+        #{companyTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.BaseCompanyType">
+    update BASE_COMPANY_TYPE
+    <set>
+      <if test="companyTypeName != null">
+        COMPANY_TYPE_NAME = #{companyTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.BaseCompanyType">
+    update BASE_COMPANY_TYPE
+    set COMPANY_TYPE_NAME = #{companyTypeName,jdbcType=VARCHAR}
+    where COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

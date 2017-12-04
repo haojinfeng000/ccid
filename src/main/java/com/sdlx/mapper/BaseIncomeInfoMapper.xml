@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.BaseIncomeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.BaseIncomeInfo">
+    <id column="INCOME_SCAL_ID" jdbcType="INTEGER" property="incomeScalId" />
+    <result column="INCOME_SCAL" jdbcType="VARCHAR" property="incomeScal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INCOME_SCAL_ID, INCOME_SCAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_INCOME_INFO
+    where INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BASE_INCOME_INFO
+    where INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.BaseIncomeInfo">
+    insert into BASE_INCOME_INFO (INCOME_SCAL_ID, INCOME_SCAL)
+    values (#{incomeScalId,jdbcType=INTEGER}, #{incomeScal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.BaseIncomeInfo">
+    insert into BASE_INCOME_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="incomeScalId != null">
+        INCOME_SCAL_ID,
+      </if>
+      <if test="incomeScal != null">
+        INCOME_SCAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="incomeScalId != null">
+        #{incomeScalId,jdbcType=INTEGER},
+      </if>
+      <if test="incomeScal != null">
+        #{incomeScal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.BaseIncomeInfo">
+    update BASE_INCOME_INFO
+    <set>
+      <if test="incomeScal != null">
+        INCOME_SCAL = #{incomeScal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.BaseIncomeInfo">
+    update BASE_INCOME_INFO
+    set INCOME_SCAL = #{incomeScal,jdbcType=VARCHAR}
+    where INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER}
+  </update>
+</mapper>

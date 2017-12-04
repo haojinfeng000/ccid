@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.ProfessorPaperDetailMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.ProfessorPaperDetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PROFESSOR_ID" jdbcType="INTEGER" property="professorId" />
+    <result column="COMPANY_PROJECT_ID" jdbcType="INTEGER" property="companyProjectId" />
+    <result column="PAPER_ID" jdbcType="INTEGER" property="paperId" />
+    <result column="TYPE_ID" jdbcType="INTEGER" property="typeId" />
+    <result column="MODULE_ID" jdbcType="INTEGER" property="moduleId" />
+    <result column="QUEST_ID" jdbcType="INTEGER" property="questId" />
+    <result column="QUEST_OPTION_ID" jdbcType="INTEGER" property="questOptionId" />
+    <result column="SCORE" jdbcType="DOUBLE" property="score" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROFESSOR_ID, COMPANY_PROJECT_ID, PAPER_ID, TYPE_ID, MODULE_ID, QUEST_ID, QUEST_OPTION_ID, 
+    SCORE, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PROFESSOR_PAPER_DETAIL
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from PROFESSOR_PAPER_DETAIL
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.ProfessorPaperDetail">
+    insert into PROFESSOR_PAPER_DETAIL (ID, PROFESSOR_ID, COMPANY_PROJECT_ID, 
+      PAPER_ID, TYPE_ID, MODULE_ID, 
+      QUEST_ID, QUEST_OPTION_ID, SCORE, 
+      CREATE_DATE, UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{professorId,jdbcType=INTEGER}, #{companyProjectId,jdbcType=INTEGER}, 
+      #{paperId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{moduleId,jdbcType=INTEGER}, 
+      #{questId,jdbcType=INTEGER}, #{questOptionId,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.ProfessorPaperDetail">
+    insert into PROFESSOR_PAPER_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="professorId != null">
+        PROFESSOR_ID,
+      </if>
+      <if test="companyProjectId != null">
+        COMPANY_PROJECT_ID,
+      </if>
+      <if test="paperId != null">
+        PAPER_ID,
+      </if>
+      <if test="typeId != null">
+        TYPE_ID,
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID,
+      </if>
+      <if test="questId != null">
+        QUEST_ID,
+      </if>
+      <if test="questOptionId != null">
+        QUEST_OPTION_ID,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="professorId != null">
+        #{professorId,jdbcType=INTEGER},
+      </if>
+      <if test="companyProjectId != null">
+        #{companyProjectId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="questId != null">
+        #{questId,jdbcType=INTEGER},
+      </if>
+      <if test="questOptionId != null">
+        #{questOptionId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.ProfessorPaperDetail">
+    update PROFESSOR_PAPER_DETAIL
+    <set>
+      <if test="professorId != null">
+        PROFESSOR_ID = #{professorId,jdbcType=INTEGER},
+      </if>
+      <if test="companyProjectId != null">
+        COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER},
+      </if>
+      <if test="paperId != null">
+        PAPER_ID = #{paperId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        TYPE_ID = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="questId != null">
+        QUEST_ID = #{questId,jdbcType=INTEGER},
+      </if>
+      <if test="questOptionId != null">
+        QUEST_OPTION_ID = #{questOptionId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        SCORE = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.ProfessorPaperDetail">
+    update PROFESSOR_PAPER_DETAIL
+    set PROFESSOR_ID = #{professorId,jdbcType=INTEGER},
+      COMPANY_PROJECT_ID = #{companyProjectId,jdbcType=INTEGER},
+      PAPER_ID = #{paperId,jdbcType=INTEGER},
+      TYPE_ID = #{typeId,jdbcType=INTEGER},
+      MODULE_ID = #{moduleId,jdbcType=INTEGER},
+      QUEST_ID = #{questId,jdbcType=INTEGER},
+      QUEST_OPTION_ID = #{questOptionId,jdbcType=INTEGER},
+      SCORE = #{score,jdbcType=DOUBLE},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

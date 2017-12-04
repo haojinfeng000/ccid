@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdlx.dao.CompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.sdlx.model.CompanyInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="COMPANY_TYPE_ID" jdbcType="INTEGER" property="companyTypeId" />
+    <result column="INDUSTRY_ID" jdbcType="INTEGER" property="industryId" />
+    <result column="INCOME_SCAL_ID" jdbcType="INTEGER" property="incomeScalId" />
+    <result column="PEOPLE_SCALE_ID" jdbcType="INTEGER" property="peopleScaleId" />
+    <result column="PROVINCE_ID" jdbcType="INTEGER" property="provinceId" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="CREDIT_CODE" jdbcType="VARCHAR" property="creditCode" />
+    <result column="BUSINESS_LICENSE" jdbcType="VARCHAR" property="businessLicense" />
+    <result column="QHONORS" jdbcType="VARCHAR" property="qhonors" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, COMPANY_TYPE_ID, INDUSTRY_ID, INCOME_SCAL_ID, PEOPLE_SCALE_ID, PROVINCE_ID, CITY_ID, 
+    ADDRESS, ACCOUNT, PASSWORD, COMPANY_NAME, CREDIT_CODE, BUSINESS_LICENSE, QHONORS, 
+    STATE, REMARK, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COMPANY_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from COMPANY_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdlx.model.CompanyInfo">
+    insert into COMPANY_INFO (ID, COMPANY_TYPE_ID, INDUSTRY_ID, 
+      INCOME_SCAL_ID, PEOPLE_SCALE_ID, PROVINCE_ID, 
+      CITY_ID, ADDRESS, ACCOUNT, 
+      PASSWORD, COMPANY_NAME, CREDIT_CODE, 
+      BUSINESS_LICENSE, QHONORS, STATE, 
+      REMARK, CREATE_DATE, UPDATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyTypeId,jdbcType=INTEGER}, #{industryId,jdbcType=INTEGER}, 
+      #{incomeScalId,jdbcType=INTEGER}, #{peopleScaleId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, 
+      #{cityId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{creditCode,jdbcType=VARCHAR}, 
+      #{businessLicense,jdbcType=VARCHAR}, #{qhonors,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdlx.model.CompanyInfo">
+    insert into COMPANY_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="companyTypeId != null">
+        COMPANY_TYPE_ID,
+      </if>
+      <if test="industryId != null">
+        INDUSTRY_ID,
+      </if>
+      <if test="incomeScalId != null">
+        INCOME_SCAL_ID,
+      </if>
+      <if test="peopleScaleId != null">
+        PEOPLE_SCALE_ID,
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID,
+      </if>
+      <if test="cityId != null">
+        CITY_ID,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME,
+      </if>
+      <if test="creditCode != null">
+        CREDIT_CODE,
+      </if>
+      <if test="businessLicense != null">
+        BUSINESS_LICENSE,
+      </if>
+      <if test="qhonors != null">
+        QHONORS,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyTypeId != null">
+        #{companyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null">
+        #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="incomeScalId != null">
+        #{incomeScalId,jdbcType=INTEGER},
+      </if>
+      <if test="peopleScaleId != null">
+        #{peopleScaleId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null">
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="qhonors != null">
+        #{qhonors,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdlx.model.CompanyInfo">
+    update COMPANY_INFO
+    <set>
+      <if test="companyTypeId != null">
+        COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null">
+        INDUSTRY_ID = #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="incomeScalId != null">
+        INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER},
+      </if>
+      <if test="peopleScaleId != null">
+        PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null">
+        CREDIT_CODE = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null">
+        BUSINESS_LICENSE = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="qhonors != null">
+        QHONORS = #{qhonors,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdlx.model.CompanyInfo">
+    update COMPANY_INFO
+    set COMPANY_TYPE_ID = #{companyTypeId,jdbcType=INTEGER},
+      INDUSTRY_ID = #{industryId,jdbcType=INTEGER},
+      INCOME_SCAL_ID = #{incomeScalId,jdbcType=INTEGER},
+      PEOPLE_SCALE_ID = #{peopleScaleId,jdbcType=INTEGER},
+      PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      CITY_ID = #{cityId,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      CREDIT_CODE = #{creditCode,jdbcType=VARCHAR},
+      BUSINESS_LICENSE = #{businessLicense,jdbcType=VARCHAR},
+      QHONORS = #{qhonors,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
